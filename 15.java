@@ -1,32 +1,49 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
 
-        List<List<Integer>> Btriple = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
+        Arrays.sort(nums);
 
-                int x = nums[i];
-                int y = nums[j];
-                int z = -(x + y);
+        for (int i = 0; i < nums.length - 2; i++) {
 
-                for (int k = j + 1; k < nums.length; k++) {
+            // Skip duplicate first elements
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
 
-                    if (nums[k] == z) {
+            int j = i + 1;
+            int k = nums.length - 1;
 
-                        List<Integer> triplet =
-                            Arrays.asList(x, y, z);
+            while (j < k) {
 
-                        Collections.sort(triplet);
+                int sum = nums[i] + nums[j] + nums[k];
 
-                        if (!Btriple.contains(triplet)) {
-                            Btriple.add(triplet);
-                        }
+                if (sum == 0) {
+
+                    result.add(Arrays.asList(nums[i], nums[j], nums[k]));
+
+                    // Skip duplicates
+                    while (j < k && nums[j] == nums[j + 1]) {
+                        j++;
                     }
+
+                    while (j < k && nums[k] == nums[k - 1]) {
+                        k--;
+                    }
+
+                    j++;
+                    k--;
+
+                } else if (sum < 0) {
+                    j++;
+
+                } else {
+                    k--;
                 }
             }
         }
 
-        return Btriple;
+        return result;
     }
 }
