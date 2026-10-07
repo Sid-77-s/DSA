@@ -1,0 +1,15 @@
+# CodeRabbit Configuration
+language: "en-US"
+tone_instructions: "Be concise, constructive, and prioritize time/space complexity analysis (Big-O), algorithmic efficiency, and tricky edge cases."
+reviews:
+  high_level_summary: true
+  poem: false
+  review_status: true
+  auto_review:
+    enabled: true
+    drafts: false
+  tools:
+    ast-grep:
+      enabled: true
+chat:
+  auto_reply: true
